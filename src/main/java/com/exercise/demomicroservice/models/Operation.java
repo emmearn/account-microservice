@@ -22,7 +22,7 @@ public class Operation {
     @Id
     @NotEmpty @NotNull @NotBlank
     @Getter @Setter
-    private String id;
+    private Integer id;
 
     @NotEmpty @NotNull @NotBlank
     @Getter @Setter
@@ -37,10 +37,10 @@ public class Operation {
 
     @NotEmpty @NotNull @NotBlank
     @Getter @Setter
-    private String sender;
+    private Integer sender;
 
     @NotEmpty @NotNull @NotBlank
     @Getter @Setter
-    private String receiver;
+    private Integer receiver;
 
 }

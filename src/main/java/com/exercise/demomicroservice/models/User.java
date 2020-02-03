@@ -20,7 +20,7 @@ public class User {
     @Id
     @NotEmpty @NotNull @NotBlank
     @Getter @Setter
-    private String id;
+    private Integer id;
 
     @NotEmpty @NotNull @NotBlank
     @Getter @Setter

@@ -22,14 +22,14 @@ public class Account {
     @Id
     @NotEmpty @NotNull @NotBlank
     @Getter @Setter
-    private String id;
+    private Integer id;
 
     @NotEmpty @NotNull @NotBlank
     @Getter @Setter
     @Column(name="fk_user")
-    private String fkUser;
+    private Integer fkUser;
 
     @NotEmpty @NotNull @NotBlank
-    private Double total;
+    private Double amount;
 
 }
