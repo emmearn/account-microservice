@@ -1,11 +1,11 @@
-package com.exercise.demomicroservice.services.impl;
+package com.accountmicroservice.services.impl;
 
-import com.exercise.demomicroservice.models.User;
-import com.exercise.demomicroservice.repo.UserRepo;
-import com.exercise.demomicroservice.services.LoginService;
-import com.exercise.demomicroservice.services.UserNotLoggedException;
-import com.exercise.demomicroservice.utils.EncryptionUtils;
-import com.exercise.demomicroservice.utils.JwtUtils;
+import com.accountmicroservice.models.User;
+import com.accountmicroservice.repo.UserRepo;
+import com.accountmicroservice.services.LoginService;
+import com.accountmicroservice.services.UserNotLoggedException;
+import com.accountmicroservice.utils.EncryptionUtils;
+import com.accountmicroservice.utils.JwtUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

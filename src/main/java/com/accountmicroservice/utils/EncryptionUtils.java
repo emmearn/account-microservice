@@ -1,4 +1,4 @@
-package com.exercise.demomicroservice.utils;
+package com.accountmicroservice.utils;
 
 import org.jasypt.util.text.BasicTextEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;

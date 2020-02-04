@@ -1,10 +1,10 @@
-package com.exercise.demomicroservice.controllers;
+package com.accountmicroservice.controllers;
 
-import com.exercise.demomicroservice.models.Operation;
-import com.exercise.demomicroservice.models.User;
-import com.exercise.demomicroservice.services.LoginService;
-import com.exercise.demomicroservice.services.OperationService;
-import com.exercise.demomicroservice.services.UserNotLoggedException;
+import com.accountmicroservice.services.UserNotLoggedException;
+import com.accountmicroservice.models.Operation;
+import com.accountmicroservice.models.User;
+import com.accountmicroservice.services.LoginService;
+import com.accountmicroservice.services.OperationService;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,13 +18,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
 import java.util.Optional;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;

@@ -1,4 +1,4 @@
-package com.exercise.demomicroservice.utils;
+package com.accountmicroservice.utils;
 
 import io.jsonwebtoken.*;
 import org.springframework.stereotype.Component;

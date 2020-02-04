@@ -1,7 +1,7 @@
-package com.exercise.demomicroservice.services;
+package com.accountmicroservice.services;
 
-import com.exercise.demomicroservice.models.Account;
-import com.exercise.demomicroservice.models.Operation;
+import com.accountmicroservice.models.Account;
+import com.accountmicroservice.models.Operation;
 
 import java.util.List;
 

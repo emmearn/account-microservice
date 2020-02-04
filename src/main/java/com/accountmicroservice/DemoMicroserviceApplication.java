@@ -1,12 +1,12 @@
-package com.exercise.demomicroservice;
+package com.accountmicroservice;
 
-import com.exercise.demomicroservice.models.Account;
-import com.exercise.demomicroservice.models.Operation;
-import com.exercise.demomicroservice.models.User;
-import com.exercise.demomicroservice.repo.AccountRepo;
-import com.exercise.demomicroservice.repo.OperationRepo;
-import com.exercise.demomicroservice.repo.UserRepo;
-import com.exercise.demomicroservice.utils.EncryptionUtils;
+import com.accountmicroservice.models.Account;
+import com.accountmicroservice.models.Operation;
+import com.accountmicroservice.models.User;
+import com.accountmicroservice.repo.AccountRepo;
+import com.accountmicroservice.repo.OperationRepo;
+import com.accountmicroservice.repo.UserRepo;
+import com.accountmicroservice.utils.EncryptionUtils;
 import org.jasypt.util.text.BasicTextEncryptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

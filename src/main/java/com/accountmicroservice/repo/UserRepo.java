@@ -1,6 +1,6 @@
-package com.exercise.demomicroservice.repo;
+package com.accountmicroservice.repo;
 
-import com.exercise.demomicroservice.models.User;
+import com.accountmicroservice.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

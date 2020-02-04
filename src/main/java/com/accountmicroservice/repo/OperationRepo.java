@@ -1,6 +1,6 @@
-package com.exercise.demomicroservice.repo;
+package com.accountmicroservice.repo;
 
-import com.exercise.demomicroservice.models.Operation;
+import com.accountmicroservice.models.Operation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
