@@ -25,7 +25,7 @@ public class JwtUtils {
         return jwt;
     }
 
-    public static Map<String, Object> jwtMap(String jwt) throws UnsupportedEncodingException, ExpiredJwtException {
+    public static Map<String, Object> jwt2Map(String jwt) throws UnsupportedEncodingException, ExpiredJwtException {
         Jws<Claims> claim = Jwts.parser()
                 .setSigningKey("myPersonalSecretKey12345".getBytes("UTF-8"))
                 .parseClaimsJws(jwt);
