@@ -1,13 +1,20 @@
 package com.exercise.demomicroservice.controllers;
 
+import com.exercise.demomicroservice.models.JsonResponseBody;
+import com.exercise.demomicroservice.models.Operation;
 import com.exercise.demomicroservice.models.User;
+import com.exercise.demomicroservice.models.UserValidator;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
@@ -44,18 +51,27 @@ public class RestController {
         return "User added correctly: " + user.getId() + ", " + user.getUsername();
     }
 
-    // INNER CLASS
-    private class UserValidator implements Validator {
-        @Override
-        public boolean supports(Class<?> aClass) {
-            return User.class.equals(aClass);
-        }
+    @RequestMapping(value = "/login", method = POST)
+    public ResponseEntity<JsonResponseBody> loginUser(@RequestParam String id,
+                                                      @RequestParam(value="password") String pwd) {
+        return null;
+    }
 
-        @Override
-        public void validate(Object obj, Errors errors) {
-            User user = (User) obj;
-            if (user.getPassword().length() < 8)
-                errors.rejectValue("password", "the password must be at least 8 chars long!");
-        }
+    @RequestMapping(value = "/operations/account/{account}")
+    public ResponseEntity<JsonResponseBody> fetchAllOperationsPerAccount(HttpServletRequest request,
+                                                                         @PathVariable String account) {
+        return null;
+    }
+
+    @RequestMapping(value = "/accounts/user")
+    public ResponseEntity<JsonResponseBody> fetchAllAccountsPerUser(HttpServletRequest request) {
+        return null;
+    }
+
+    @RequestMapping(value = "/operations", method = POST)
+    public ResponseEntity<JsonResponseBody> addOperation(HttpServletRequest request,
+                                                         @Valid Operation operation,
+                                                         BindingResult bindingResult) {
+        return null;
     }
 }
