@@ -1,7 +1,6 @@
 package com.accountmicroservice.utils;
 
 import io.jsonwebtoken.*;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +36,7 @@ public class JwtUtils {
         String subj = claim.getBody().getSubject();
 
         Date now = new Date();
-        if(now.after(expDate))
+        if (now.after(expDate))
             throw new ExpiredJwtException(null, null, "Session expired");
 
         Map<String, Object> userData = new HashMap<>();
@@ -52,11 +51,11 @@ public class JwtUtils {
     public static String getJwtFromHttpRequest(HttpServletRequest request) {
         String jwt = null;
 
-        if(request.getHeader("jwt") != null)
+        if (request.getHeader("jwt") != null)
             jwt = request.getHeader("jwt");
-        else if(request.getCookies() != null)
+        else if (request.getCookies() != null)
             for(Cookie cookie: request.getCookies())
-                if(cookie.getName().equals("jwt"))
+                if (cookie.getName().equals("jwt"))
                     jwt = cookie.getValue();
 
         return jwt;

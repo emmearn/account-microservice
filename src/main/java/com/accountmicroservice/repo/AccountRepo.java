@@ -10,7 +10,7 @@ import java.util.List;
 public interface AccountRepo extends JpaRepository<Account, String> {
 
     @Query(value = "SELECT * FROM accounts WHERE fk_user=:id", nativeQuery = true)
-    List<Account> getAllAccountsPerUser(@Param("id") String id);
+    List<Account> getAllAccountsPerUser(@Param("id") Integer id);
 
-    List<Account> findByFkUser(String fkUser);
+    List<Account> findByFkUser(Integer fkUser);
 }

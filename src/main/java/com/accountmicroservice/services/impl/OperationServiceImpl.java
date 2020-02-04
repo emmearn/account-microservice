@@ -22,12 +22,12 @@ public class OperationServiceImpl implements OperationService {
     OperationRepo operationRepo;
 
     @Override
-    public List<Operation> getAllOperationsPerAccount(String accountId) {
+    public List<Operation> getAllOperationsPerAccount(Integer accountId) {
         return operationRepo.findAllOperationsByAccount(accountId);
     }
 
     @Override
-    public List<Account> getAllAccountsPerUser(String userId) {
+    public List<Account> getAllAccountsPerUser(Integer userId) {
         return accountRepo.getAllAccountsPerUser(userId);
     }
 

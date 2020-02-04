@@ -32,7 +32,7 @@ public class LoginServiceImpl implements LoginService {
     public Optional<User> getUser(String id, String password) throws UserNotLoggedException {
         Optional<User> user = userRepo.findById(id);
         if (user.isPresent())
-            if(encryptionUtils.decrypt(user.get().getPassword()).equals(password))
+            if (encryptionUtils.decrypt(user.get().getPassword()).equals(password))
                 log.info("Username and password verified");
             else {
                 log.error("Username verified but password is wrong!");

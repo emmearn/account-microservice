@@ -20,16 +20,16 @@ import javax.validation.constraints.NotNull;
 public class Account {
 
     @Id
-    @NotEmpty @NotNull @NotBlank
+    @NotNull
     @Getter @Setter
     private Integer id;
 
-    @NotEmpty @NotNull @NotBlank
+    @NotNull
     @Getter @Setter
     @Column(name="fk_user")
     private Integer fkUser;
 
-    @NotEmpty @NotNull @NotBlank
+    @NotNull
+    @Getter @Setter
     private Double amount;
-
 }

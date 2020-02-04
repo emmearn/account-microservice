@@ -20,27 +20,27 @@ import java.util.Date;
 public class Operation {
 
     @Id
-    @NotEmpty @NotNull @NotBlank
+    @NotNull
     @Getter @Setter
     private Integer id;
 
-    @NotEmpty @NotNull @NotBlank
+    @NotNull
     @Getter @Setter
     private Date date;
 
-    @NotEmpty @NotNull @NotBlank
+    @NotNull
+    @Getter @Setter
     private Double amount;
 
     @NotEmpty @NotNull @NotBlank
     @Getter @Setter
     private String description;
 
-    @NotEmpty @NotNull @NotBlank
+    @NotNull
     @Getter @Setter
     private Integer sender;
 
-    @NotEmpty @NotNull @NotBlank
+    @NotNull
     @Getter @Setter
     private Integer receiver;
-
 }
