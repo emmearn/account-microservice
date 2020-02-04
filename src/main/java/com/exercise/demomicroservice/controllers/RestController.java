@@ -1,9 +1,18 @@
 package com.exercise.demomicroservice.controllers;
 
-import com.exercise.demomicroservice.models.JsonResponseBody;
 import com.exercise.demomicroservice.models.Operation;
 import com.exercise.demomicroservice.models.User;
-import com.exercise.demomicroservice.models.UserValidator;
+import com.exercise.demomicroservice.services.LoginService;
+import com.exercise.demomicroservice.services.OperationService;
+import com.exercise.demomicroservice.services.UserNotLoggedException;
+import io.jsonwebtoken.ExpiredJwtException;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,53 +23,67 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Date;
+import java.util.Optional;
+
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
+@AllArgsConstructor
+class JsonResponseBody {
+    @Getter
+    @Setter
+    private int status;
+
+    @Getter @Setter
+    private Object response;
+}
 
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
-    @RequestMapping("/hello")
-    @ResponseBody
-    public String sayHello() {
-        return "Hello everyone!";
-    }
+    private static final Logger log = LoggerFactory.getLogger(RestController.class);
 
-    @RequestMapping("user")
-    public String addUser(User user) {
-        return "User added correctly: " + user.getId() + ", " + user.getUsername();
-    }
+    @Autowired
+    LoginService loginService;
 
-    @RequestMapping("user2")
-    public String addUser2(@Valid User user) {
-        return "User added correctly: " + user.getId() + ", " + user.getUsername();
-    }
-
-    @RequestMapping("user3")
-    public String addUser3(@Valid User user, BindingResult result) {
-        if(result.hasErrors())
-            return result.toString();
-        return "User added correctly: " + user.getId() + ", " + user.getUsername();
-    }
-
-    @RequestMapping("user4")
-    public String addUser4(User user, BindingResult result) {
-        UserValidator userValidator = new UserValidator();
-        userValidator.validate(user, result);
-
-        if(result.hasErrors())
-            return result.toString();
-        return "User added correctly: " + user.getId() + ", " + user.getUsername();
-    }
+    @Autowired
+    OperationService operationService;
 
     @RequestMapping(value = "/login", method = POST)
     public ResponseEntity<JsonResponseBody> loginUser(@RequestParam String id,
                                                       @RequestParam(value="password") String pwd) {
-        return null;
+        try {
+            Optional<User> userOpt = loginService.getUser(id, pwd);
+            if (userOpt.isPresent()) {
+                User user = userOpt.get();
+                String jwt = loginService.createJwt(user.getId().toString(), user.getUsername(), user.getPermission());
+                return ResponseEntity.status(HttpStatus.OK)
+                        .header("jwt", jwt)
+                        .body(new JsonResponseBody(HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase()));
+            }
+        } catch (UserNotLoggedException | UnsupportedEncodingException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(new JsonResponseBody(HttpStatus.FORBIDDEN.value(), HttpStatus.FORBIDDEN.getReasonPhrase()));
+        }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new JsonResponseBody(HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase()));
     }
 
     @RequestMapping(value = "/operations/account/{account}")
     public ResponseEntity<JsonResponseBody> fetchAllOperationsPerAccount(HttpServletRequest request,
-                                                                         @PathVariable String account) {
-        return null;
+                                                                         @PathVariable String accountId) {
+        try {
+            loginService.verifyJwtAndGetData(request);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new JsonResponseBody(HttpStatus.OK.value(), operationService.getAllOperationsPerAccount(accountId)));
+        } catch (UnsupportedEncodingException | UserNotLoggedException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(new JsonResponseBody(HttpStatus.FORBIDDEN.value(), HttpStatus.FORBIDDEN.getReasonPhrase()));
+        } catch (ExpiredJwtException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new JsonResponseBody(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase()));
+        }
     }
 
     @RequestMapping(value = "/accounts/user")

@@ -42,9 +42,9 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public String createJwt(String subject, String name, String permission, Date date) throws UnsupportedEncodingException {
-        Date expDate = date;
-        date.setTime(date.getTime() + (300*1000)); // 5 minutes
+    public String createJwt(String subject, String name, String permission) throws UnsupportedEncodingException {
+        Date expDate = new Date();
+        expDate.setTime(expDate.getTime() + (300*1000)); // 5 minutes
         log.info("Jwt Creation. Expiration: " + expDate.getTime());
 
         return JwtUtils.generateJwt(subject, expDate, name, permission);
