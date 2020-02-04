@@ -20,9 +20,9 @@ import java.util.Date;
 public class Operation {
 
     @Id
-    @NotNull
+    @NotEmpty @NotNull @NotBlank
     @Getter @Setter
-    private Integer id;
+    private String id;
 
     @NotNull
     @Getter @Setter
@@ -36,11 +36,11 @@ public class Operation {
     @Getter @Setter
     private String description;
 
-    @NotNull
+    @NotEmpty @NotNull @NotBlank
     @Getter @Setter
-    private Integer sender;
+    private String sender;
 
-    @NotNull
+    @NotEmpty @NotNull @NotBlank
     @Getter @Setter
-    private Integer receiver;
+    private String receiver;
 }

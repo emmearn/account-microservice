@@ -18,9 +18,9 @@ import javax.validation.constraints.NotNull;
 public class User {
 
     @Id
-    @NotNull
+    @NotEmpty @NotNull @NotBlank
     @Getter @Setter
-    private Integer id;
+    private String id;
 
     @NotEmpty @NotNull @NotBlank
     @Getter @Setter

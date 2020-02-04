@@ -43,19 +43,19 @@ public class DemoMicroserviceApplication implements CommandLineRunner {
 	public void run(String... string) throws Exception {
 		log.info("Hello world!");
 
-		userRepo.save(new User(1, "user1@example.com", encryptionUtils.encrypt("123456"), "user"));
-		userRepo.save(new User(2, "user2@example.com", encryptionUtils.encrypt("789123"), "user"));
-		userRepo.save(new User(3, "user3@example.com", encryptionUtils.encrypt("345123"), "user"));
+		userRepo.save(new User("U53R1", "user1@example.com", encryptionUtils.encrypt("123456"), "user"));
+		userRepo.save(new User("U53R2", "user2@example.com", encryptionUtils.encrypt("789123"), "user"));
+		userRepo.save(new User("U53R3", "user3@example.com", encryptionUtils.encrypt("345123"), "user"));
 
-		accountRepo.save(new Account(1, 1, 1000.00));
-		accountRepo.save(new Account(2, 2, 1500.00));
-		accountRepo.save(new Account(3, 3, 3000.00));
+		accountRepo.save(new Account("4CC0UN71", "U53R1", 1000.00));
+		accountRepo.save(new Account("4CC0UN72", "U53R2", 1500.00));
+		accountRepo.save(new Account("4CC0UN73", "U53R3", 3000.00));
 
-		operationRepo.save(new Operation(1, Calendar.getInstance().getTime(), 30.00, "sending 30", 1, 2));
-		operationRepo.save(new Operation(2, Calendar.getInstance().getTime(), 3.00, "sending 3", 2, 1));
-		operationRepo.save(new Operation(3, Calendar.getInstance().getTime(), 40.00, "sending 40", 2, 3));
-		operationRepo.save(new Operation(4, Calendar.getInstance().getTime(), 100.00, "sending 100", 3, 1));
-		operationRepo.save(new Operation(5, Calendar.getInstance().getTime(), 99.00, "sending 99", 1, 3));
+		operationRepo.save(new Operation("0P3R4710N1", Calendar.getInstance().getTime(), 30.00, "sending 30", "U53R1", "U53R2"));
+		operationRepo.save(new Operation("0P3R4710N2", Calendar.getInstance().getTime(), 3.00, "sending 3", "U53R2", "U53R1"));
+		operationRepo.save(new Operation("0P3R4710N3", Calendar.getInstance().getTime(), 40.00, "sending 40", "U53R2", "U53R3"));
+		operationRepo.save(new Operation("0P3R4710N4", Calendar.getInstance().getTime(), 100.00, "sending 100", "U53R3", "U53R1"));
+		operationRepo.save(new Operation("0P3R4710N5", Calendar.getInstance().getTime(), 99.00, "sending 99", "U53R1", "U53R3"));
 	}
 
 	@Bean
