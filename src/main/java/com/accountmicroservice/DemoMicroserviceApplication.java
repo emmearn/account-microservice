@@ -59,11 +59,4 @@ public class DemoMicroserviceApplication implements CommandLineRunner {
 
 		log.info("Database filled");
 	}
-
-	@Bean
-	public BasicTextEncryptor textEncryptor() {
-		BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
-		textEncryptor.setPassword("mySecretEncriptionKeyBlaBla1234");
-		return textEncryptor;
-	}
 }
