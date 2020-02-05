@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface OperationRepo extends JpaRepository<Operation, String> {
 
-    @Query(value = "SELECT * FROM operations WHERE receiver=:id", nativeQuery = true)
+    @Query(value = "SELECT * FROM operations WHERE receiver=:id OR sender=id", nativeQuery = true)
     List<Operation> findAllOperationsByAccount(@Param("id") String id);
 }

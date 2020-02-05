@@ -72,7 +72,7 @@ public class RestController {
                 .body(new JsonResponseBody(HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase()));
     }
 
-    @RequestMapping(value = "/operations/account/{account}")
+    @RequestMapping(value = "/operations/account/{accountId}")
     public ResponseEntity<JsonResponseBody> fetchAllOperationsPerAccount(HttpServletRequest request,
                                                                          @PathVariable String accountId) {
         try {
