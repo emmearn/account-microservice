@@ -43,7 +43,7 @@ public class JwtUtils {
         userData.put("name", name);
         userData.put("scope", scope);
         userData.put("expDate", expDate);
-        userData.put("subj", subj);
+        userData.put("subject", subj);
 
         return userData;
     }

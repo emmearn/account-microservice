@@ -6,7 +6,7 @@ import com.accountmicroservice.models.Operation;
 import java.util.List;
 
 public interface OperationService {
-    List<Operation> getAllOperationsPerAccount(Integer accountId);
-    List<Account> getAllAccountsPerUser(Integer userId);
+    List<Operation> getAllOperationsPerAccount(String accountId);
+    List<Account> getAllAccountsPerUser(String userId);
     Operation saveOperation(Operation operation);
 }

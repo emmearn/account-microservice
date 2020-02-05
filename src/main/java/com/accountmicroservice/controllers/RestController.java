@@ -55,7 +55,7 @@ public class RestController {
             Optional<User> userOpt = loginService.getUser(id, pwd);
             if (userOpt.isPresent()) {
                 User user = userOpt.get();
-                String jwt = loginService.createJwt(user.getId().toString(), user.getUsername(), user.getPermission());
+                String jwt = loginService.createJwt(user.getId(), user.getUsername(), user.getPermission());
                 return ResponseEntity.status(HttpStatus.OK)
                         .header("jwt", jwt)
                         .body(new JsonResponseBody(HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase()));
@@ -74,7 +74,7 @@ public class RestController {
 
     @RequestMapping(value = "/operations/account/{account}")
     public ResponseEntity<JsonResponseBody> fetchAllOperationsPerAccount(HttpServletRequest request,
-                                                                         @PathVariable Integer accountId) {
+                                                                         @PathVariable String accountId) {
         try {
             loginService.verifyJwtAndGetData(request);
             return ResponseEntity.status(HttpStatus.OK)
@@ -98,7 +98,7 @@ public class RestController {
 
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new JsonResponseBody(HttpStatus.OK.value(),
-                            operationService.getAllAccountsPerUser((Integer) userData.get("subject"))));
+                            operationService.getAllAccountsPerUser(userData.get("subject").toString())));
         } catch (UnsupportedEncodingException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()));
