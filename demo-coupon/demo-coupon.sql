@@ -1,0 +1,8 @@
+CREATE TABLE coupon (
+	id SERIAL PRIMARY KEY NOT NULL,
+	code VARCHAR(10),
+	account VARCHAR(8)
+);
+
+INSERT INTO coupon (code, account) VALUES ('JV12CV3EK5', '4CC0UN71');
+INSERT INTO coupon (code, account) VALUES ('JV18CV3EF8', '4CC0UN73');
