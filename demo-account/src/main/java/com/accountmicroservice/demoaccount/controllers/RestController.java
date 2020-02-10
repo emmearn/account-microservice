@@ -1,14 +1,12 @@
 package com.accountmicroservice.demoaccount.controllers;
 
+import com.accountmicroservice.demoaccount.models.JsonResponseBody;
 import com.accountmicroservice.demoaccount.services.OperationService;
 import com.accountmicroservice.demoaccount.services.UserNotLoggedException;
 import com.accountmicroservice.demoaccount.models.Operation;
 import com.accountmicroservice.demoaccount.models.User;
 import com.accountmicroservice.demoaccount.services.LoginService;
 import io.jsonwebtoken.ExpiredJwtException;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +25,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
-@AllArgsConstructor
-class JsonResponseBody {
-    @Getter
-    @Setter
-    private int status;
-
-    @Getter @Setter
-    private Object response;
-}
 
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
@@ -70,25 +58,6 @@ public class RestController {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(new JsonResponseBody(HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase()));
-    }
-
-    @RequestMapping(value = "/operations/account/{accountId}")
-    public ResponseEntity<JsonResponseBody> fetchAllOperationsPerAccount(HttpServletRequest request,
-                                                                         @PathVariable String accountId) {
-        try {
-            loginService.verifyJwtAndGetData(request);
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(new JsonResponseBody(HttpStatus.OK.value(), operationService.getAllOperationsPerAccount(accountId)));
-        } catch (UnsupportedEncodingException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()));
-        } catch (UserNotLoggedException e) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                    .body(new JsonResponseBody(HttpStatus.FORBIDDEN.value(), HttpStatus.FORBIDDEN.getReasonPhrase()));
-        } catch (ExpiredJwtException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(new JsonResponseBody(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase()));
-        }
     }
 
     @RequestMapping(value = "/accounts/user")
@@ -126,6 +95,25 @@ public class RestController {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new JsonResponseBody(HttpStatus.OK.value(),
                             operationService.saveOperation(operation)));
+        } catch (UnsupportedEncodingException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()));
+        } catch (UserNotLoggedException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(new JsonResponseBody(HttpStatus.FORBIDDEN.value(), HttpStatus.FORBIDDEN.getReasonPhrase()));
+        } catch (ExpiredJwtException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new JsonResponseBody(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase()));
+        }
+    }
+
+    @RequestMapping(value = "/operations/account/{accountId}")
+    public ResponseEntity<JsonResponseBody> fetchAllOperationsPerAccount(HttpServletRequest request,
+                                                                         @PathVariable String accountId) {
+        try {
+            loginService.verifyJwtAndGetData(request);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new JsonResponseBody(HttpStatus.OK.value(), operationService.getAllOperationsPerAccount(accountId)));
         } catch (UnsupportedEncodingException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new JsonResponseBody(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()));
