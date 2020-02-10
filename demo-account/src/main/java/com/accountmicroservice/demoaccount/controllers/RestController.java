@@ -1,10 +1,10 @@
-package com.accountmicroservice.controllers;
+package com.accountmicroservice.demoaccount.controllers;
 
-import com.accountmicroservice.services.UserNotLoggedException;
-import com.accountmicroservice.models.Operation;
-import com.accountmicroservice.models.User;
-import com.accountmicroservice.services.LoginService;
-import com.accountmicroservice.services.OperationService;
+import com.accountmicroservice.demoaccount.services.OperationService;
+import com.accountmicroservice.demoaccount.services.UserNotLoggedException;
+import com.accountmicroservice.demoaccount.models.Operation;
+import com.accountmicroservice.demoaccount.models.User;
+import com.accountmicroservice.demoaccount.services.LoginService;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

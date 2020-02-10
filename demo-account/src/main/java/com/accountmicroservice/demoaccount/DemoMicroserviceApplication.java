@@ -1,12 +1,12 @@
-package com.accountmicroservice;
+package com.accountmicroservice.demoaccount;
 
-import com.accountmicroservice.models.Account;
-import com.accountmicroservice.models.Operation;
-import com.accountmicroservice.models.User;
-import com.accountmicroservice.repo.AccountRepo;
-import com.accountmicroservice.repo.OperationRepo;
-import com.accountmicroservice.repo.UserRepo;
-import com.accountmicroservice.utils.EncryptionUtils;
+import com.accountmicroservice.demoaccount.models.Account;
+import com.accountmicroservice.demoaccount.models.Operation;
+import com.accountmicroservice.demoaccount.models.User;
+import com.accountmicroservice.demoaccount.repo.AccountRepo;
+import com.accountmicroservice.demoaccount.repo.OperationRepo;
+import com.accountmicroservice.demoaccount.repo.UserRepo;
+import com.accountmicroservice.demoaccount.utils.EncryptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

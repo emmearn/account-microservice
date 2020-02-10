@@ -1,4 +1,4 @@
-package com.accountmicroservice;
+package com.accountmicroservice.demoaccount;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,6 +1,6 @@
-package com.accountmicroservice.services;
+package com.accountmicroservice.demoaccount.services;
 
-import com.accountmicroservice.models.User;
+import com.accountmicroservice.demoaccount.models.User;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;

@@ -1,4 +1,4 @@
-package com.accountmicroservice.models;
+package com.accountmicroservice.demoaccount.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

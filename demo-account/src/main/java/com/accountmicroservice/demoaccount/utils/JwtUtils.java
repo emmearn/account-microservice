@@ -1,4 +1,4 @@
-package com.accountmicroservice.utils;
+package com.accountmicroservice.demoaccount.utils;
 
 import io.jsonwebtoken.*;
 

@@ -1,6 +1,6 @@
-package com.accountmicroservice.repo;
+package com.accountmicroservice.demoaccount.repo;
 
-import com.accountmicroservice.models.Account;
+import com.accountmicroservice.demoaccount.models.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

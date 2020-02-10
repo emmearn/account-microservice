@@ -1,10 +1,10 @@
-package com.accountmicroservice.services.impl;
+package com.accountmicroservice.demoaccount.services.impl;
 
-import com.accountmicroservice.models.Account;
-import com.accountmicroservice.models.Operation;
-import com.accountmicroservice.repo.AccountRepo;
-import com.accountmicroservice.repo.OperationRepo;
-import com.accountmicroservice.services.OperationService;
+import com.accountmicroservice.demoaccount.services.OperationService;
+import com.accountmicroservice.demoaccount.models.Account;
+import com.accountmicroservice.demoaccount.models.Operation;
+import com.accountmicroservice.demoaccount.repo.AccountRepo;
+import com.accountmicroservice.demoaccount.repo.OperationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
